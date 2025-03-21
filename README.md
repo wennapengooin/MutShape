@@ -39,7 +39,7 @@ This structure shows the main `mutshape` directory containing:
   - `reffasta/`: Reference FASTA files
 - `tools/`: For storing tools and software
 - `scripts/`: For storing scripts
-- `exs/`: For storing example files or execution scripts
+- `exs/`: For storing execution scripts
 
 ## Environment Setup
 -------------------
@@ -97,7 +97,7 @@ library(TCGAbiolinks)
 # ... (R code for downloading MAF files)
 ```
 
-### Download csv files:
+### Download CSV files:
 
 Use the provided R script to download MAF files as csvs from TCGA:
 
@@ -109,6 +109,7 @@ library(TCGAbiolinks)
 
 ## Mutational Signature Analysis
 ------------------------------
+ADD SECTION HOW TO DOWNLOAD REFFASTA
 
 1. **Install Reference Genome**:
    ```python
@@ -118,7 +119,7 @@ library(TCGAbiolinks)
 
 2. **Prepare MAF Files**:
    ```bash
-   gzip -dr /home/wendyy/scratch/maf/{cancer}
+   gzip -dr /home/wendyy/scratch/maf/{cancer}  # uncompress maf.gz files
    ```
 
 3. **Run SigProfilerAssignment**:
@@ -147,9 +148,9 @@ library(TCGAbiolinks)
 ## Data Processing and Visualization
 -----------------------------------
 
-**Extract Signatures and MGW Data**:
+**Specifying siggroups, removing duplicates, adding mutation type**:
 ```bash
-sbatch ex_extract_sig_mgw.sh
+# TBD
 ```
 
 
