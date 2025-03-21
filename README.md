@@ -68,7 +68,7 @@ Load the required modules:
    
 Create an environment (with a different name) with the following dependencies:
 1. numpy ver. 1.23.5
-2. ensorflow ver. 2.15.1
+2. tensorflow ver. 2.15.1
 3. pyfaidx
 4. deepDNAshape
 
