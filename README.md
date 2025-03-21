@@ -15,6 +15,32 @@ This README outlines the complete pipeline for analyzing mutational signatures a
 4. [DNA Shape Prediction](#dna-shape-prediction)
 5. [Data Processing and Visualization](#data-processing-and-visualization)
 
+## Directory Structure
+
+mutshape/
+│
+├── data/
+│ ├── maf/
+│ ├── csv/
+│ └── reffasta/
+│
+├── tools/
+│
+├── scripts/
+│
+└── exs/
+
+text
+
+This structure shows the main `mutshape` directory containing:
+- `data/`: For storing various data files
+  - `maf/`: MAF files
+  - `csv/`: CSV files
+  - `reffasta/`: Reference FASTA files
+- `tools/`: For storing tools and software
+- `scripts/`: For storing scripts
+- `exs/`: For storing example files or execution scripts
+
 ## Environment Setup
 -------------------
 SigProfilerAssignment and deepDNAshape require different environments to run correctly.
