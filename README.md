@@ -55,6 +55,16 @@ library(TCGAbiolinks)
 # ... (R code for downloading MAF files)
 ```
 
+### Download csv files:
+
+Use the provided R script to download MAF files as csvs from TCGA:
+
+```r
+library(TCGAbiolinks)
+# ... (R code for downloading csv files)
+```
+
+
 ## Mutational Signature Analysis
 ------------------------------
 
