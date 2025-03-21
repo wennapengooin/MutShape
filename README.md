@@ -43,8 +43,6 @@ cd deepDNAshape
 pip install .
 ```
 
-[Detailed environment setup instructions](#environment-setup)
-
 ## Data Acquisition
 ------------------
 
@@ -56,8 +54,6 @@ Use the provided R script to download MAF files from TCGA:
 library(TCGAbiolinks)
 # ... (R code for downloading MAF files)
 ```
-
-[Full data acquisition instructions](#data-acquisition)
 
 ## Mutational Signature Analysis
 ------------------------------
@@ -78,8 +74,6 @@ library(TCGAbiolinks)
    sbatch master_get_sig.sh
    ```
 
-[Detailed SigProfilerAssignment instructions](#mutational-signature-analysis)
-
 ## DNA Shape Prediction
 ----------------------
 
@@ -98,8 +92,6 @@ library(TCGAbiolinks)
    sbatch master_calcadd.sh
    ```
 
-[Full deepDNAshape pipeline instructions](#dna-shape-prediction)
-
 ## Data Processing and Visualization
 -----------------------------------
 
@@ -108,7 +100,6 @@ library(TCGAbiolinks)
 sbatch ex_extract_sig_mgw.sh
 ```
 
-[Data processing and visualization details](#data-processing-and-visualization)
 
 For more detailed instructions on specific parts of the pipeline, please refer to the linked sections above.
 
