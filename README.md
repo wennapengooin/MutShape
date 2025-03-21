@@ -17,30 +17,46 @@ This README outlines the complete pipeline for analyzing mutational signatures a
 
 ## Environment Setup
 -------------------
+SigProfilerAssignment and deepDNAshape require different environments to run correctly.
 
 ### For SigProfilerAssignment:
+Load the required modules:
+1. python
+2. scipy-stack
+   
+Create an environment with the following dependencies:
+1. SigProfilerAssignment
 
 ```bash
-module load StdEnv/2023 python scipy-stack
-virtualenv --no-download ENV2
-source ENV2/bin/activate
-pip install --no-index --upgrade pip
-pip install SigProfilerAssignment
+module load StdEnv/2023 python scipy-stack # load python and scipy-stack
+virtualenv --no-download ENV2              # create an environment (in this case named ENV2)
+source ENV2/bin/activate                   # activate the environment
+pip install --no-index --upgrade pip       # upgrade pip to the latest version
+pip install SigProfilerAssignment          # install SigProfilerAssignment (it will be in your environment the next time you activate it)
 ```
 
 ### For deepDNAshape:
+Load the required modules:
+1. python 3.10.13
+2. scipy-stack
+   
+Create an environment (with a different name) with the following dependencies:
+1. numpy ver. 1.23.5
+2. ensorflow ver. 2.15.1
+3. pyfaidx
+4. deepDNAshape
 
 ```bash
-module load StdEnv/2023 python/3.10.13
-virtualenv --no-download ENV
-source ENV/bin/activate
-pip install --no-index --upgrade pip
-PYTHONPATH="" pip install numpy==1.23.5
-pip install tensorflow==2.15.1
-pip install pyfaidx
-git clone https://github.com/JinsenLi/deepDNAshape
-cd deepDNAshape
-pip install .
+module load StdEnv/2023 python/3.10.13               # load python and scipy-stack
+virtualenv --no-download ENV                         # create an environment (in this case named ENV)
+source ENV/bin/activate                              # activate the environment
+pip install --no-index --upgrade pip                 # upgrade pip to the latest version
+PYTHONPATH="" pip install numpy==1.23.5              # install older version to override version from scipy-stack
+pip install tensorflow==2.15.1                       # install tensorflow ver. 2.15.1 
+pip install pyfaidx                                  # install pyfaidx
+git clone https://github.com/JinsenLi/deepDNAshape   # in the tools directory clone deepDNAshape repository
+cd deepDNAshape                                      # enter deepDNAshape repository
+pip install .                                        # install deepDNAshape
 ```
 
 ## Data Acquisition
