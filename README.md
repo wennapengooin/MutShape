@@ -28,11 +28,11 @@ Create an environment with the following dependencies:
 1. SigProfilerAssignment
 
 ```bash
-module load StdEnv/2023 python scipy-stack # load python and scipy-stack
-virtualenv --no-download ENV2              # create an environment (in this case named ENV2)
-source ENV2/bin/activate                   # activate the environment
-pip install --no-index --upgrade pip       # upgrade pip to the latest version
-pip install SigProfilerAssignment          # install SigProfilerAssignment (it will be in your environment the next time you activate it)
+module load StdEnv/2023 python scipy-stack      # load python and scipy-stack
+virtualenv --no-download ENV2                   # create an environment (in this case named ENV2)
+source ENV2/bin/activate                        # activate the environment
+pip install --no-index --upgrade pip            # upgrade pip to the latest version
+pip install SigProfilerAssignment               # in the tools directory, install SigProfilerAssignment (it will be in your environment the next time you activate it)
 ```
 
 ### For deepDNAshape:
@@ -54,7 +54,7 @@ pip install --no-index --upgrade pip                 # upgrade pip to the latest
 PYTHONPATH="" pip install numpy==1.23.5              # install older version to override version from scipy-stack
 pip install tensorflow==2.15.1                       # install tensorflow ver. 2.15.1 
 pip install pyfaidx                                  # install pyfaidx
-git clone https://github.com/JinsenLi/deepDNAshape   # in the tools directory clone deepDNAshape repository
+git clone https://github.com/JinsenLi/deepDNAshape   # in the tools directory, clone deepDNAshape repository
 cd deepDNAshape                                      # enter deepDNAshape repository
 pip install .                                        # install deepDNAshape
 ```
