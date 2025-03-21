@@ -17,20 +17,20 @@ This README outlines the complete pipeline for analyzing mutational signatures a
 
 ## Directory Structure
 
+```
 mutshape/
 │
 ├── data/
-│ ├── maf/
-│ ├── csv/
-│ └── reffasta/
+│   ├── maf/
+│   ├── csv/
+│   └── reffasta/
 │
 ├── tools/
 │
 ├── scripts/
 │
 └── exs/
-
-text
+```
 
 This structure shows the main `mutshape` directory containing:
 - `data/`: For storing various data files
