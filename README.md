@@ -148,7 +148,7 @@ Following the downloads, move the MAF and/or CSV files from local to virtual usi
 ### Download reference FASTA
 
 ```bash
-   sbatch dl_ref_genome.sh
+   sbatch ex_dl_ref_genome.sh
 ```
 *Replace any defined variables if needed (url, file paths, etc.)*
 
@@ -166,7 +166,7 @@ Install your desired reference genome as follows (available reference genomes ar
 2. **Prepare MAF Files**:
 If you used `scp -r` to copy the MAF files from local to virtual, they will be compressed.
 
-*Note: ensure you have permissions to uncompress*
+   *Note: ensure you have permissions to uncompress*
 
    ```bash
    gzip -dr /home/wendyy/scratch/maf/{cancer}  # Uncompress directory containing maf.gz files
@@ -193,25 +193,35 @@ If you used `scp -r` to copy the MAF files from local to virtual, they will be c
 
 1. **Filter CSVs for SNPs**:
    ```bash
-   sbatch ex_snp_filter.sh
+   sbatch ex_filter_for_snps.sh
    ```
 
 2. **Add Flanking Sequences**:
    ```bash
-   sbatch master_addflanktnc.sh
+   sbatch master_add_contexts.sh
    ```
-
-3. **Run deepDNAshape**:
+3. **Transfer reference and mutant sequences to TXT files**
+   1. Create folders in `scratch` to store TXTs containing mutant and reference sequences: ``mkdir {cancer}/mutseqs` and `mkdir {cancer}/refseqs`.
+   2. Transfers sequences
+```bash
+sbatch ex_seqs_to_txt.sh
+```
+   3. Put all names of TXT files containing sequences into a new TXT file.
+   
+1. **Predict DNA shape**:
+   1. Run deepDNAshape.
    ```bash
-   sbatch master_calcadd.sh
+   sbatch master_get_dna_shape
    ```
+   2.  Put all names of TXT files containing DNA shape values into a new TXT file
 
 ## Data Processing and Visualization
 -----------------------------------
 
-**Specifying siggroups, removing duplicates, adding mutation type**:
+**Calculate Euclideans, removing duplicates, adding mutation type**:
 ```bash
-# TBD
+sbatch master_calcadd.sh # Calculate and add Euclidean distance, sign, and Euclidean distance
+python no_dup.py <csv_file> # Remove duplicate mutations
 ```
 
 

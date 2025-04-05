@@ -8,7 +8,7 @@
 #SBATCH --job-name=Mastersigs
 #SBATCH --output=Mastersigs_%j.o
 #SBATCH --error=Mastersigs_%j.e
-#SBATCH --array=0-ADJUST_ARRAY_SIZE
+#SBATCH --array=YOUR_ARRAY_SIZE
 
 module load python scipy-stack
 source $HOME/ENV2/bin/activate
