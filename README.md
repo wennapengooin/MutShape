@@ -147,11 +147,10 @@ Following the downloads, move the MAF and/or CSV files from local to virtual usi
 
 ### Download reference FASTA
 
-Replace any defined variables (url, file paths, etc.) if needed
-
 ```bash
    sbatch dl_ref_genome.sh
 ```
+*Replace any defined variables if needed (url, file paths, etc.)*
 
 ## Mutational Signature Analysis
 ------------------------------
@@ -164,16 +163,29 @@ Install your desired reference genome as follows (available reference genomes ar
    genInstall.install('GRCh38')
    ```
 
-1. **Prepare MAF Files**:
+2. **Prepare MAF Files**:
 If you used `scp -r` to copy the MAF files from local to virtual, they will be compressed.
 
+*Note: ensure you have permissions to uncompress*
+
    ```bash
-   gzip -dr /home/wendyy/scratch/maf/{cancer}  # uncompress directory containing maf.gz files
+   gzip -dr /home/wendyy/scratch/maf/{cancer}  # Uncompress directory containing maf.gz files
    ```
 
-1. **Run SigProfilerAssignment**:
+3. **Run SigProfilerAssignment**:
+   1. Create a text file containing all the maf directories in the cancer project.
+   2. Run the executable, remembering to change the array number to the number of MAF files
+   3. **IMPORTANT**: Some MAF files may be empty. Reconfigure the text file containing all the MAF directories **AND** Reconfigure the text file containing all the CSV  directories.
+
    ```bash
-   sbatch master_get_sig.sh
+   sbatch master_get_sigs.sh
+   ```
+
+4. **Map Signature to Mutation**
+   Appends the signatures with the highest probabilities of each mutation to the CSV of the corresponding sample.
+
+   ```bash
+   sbatch master_add_decomposed_sigs.sh
    ```
 
 ## DNA Shape Prediction
