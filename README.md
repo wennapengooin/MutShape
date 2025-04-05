@@ -203,7 +203,7 @@ If you used `scp -r` to copy the MAF files from local to virtual, they will be c
 3. **Transfer reference and mutant sequences to TXT files**
    1. Create folders in `scratch` to store TXTs containing mutant and reference sequences: ``mkdir {cancer}/mutseqs` and `mkdir {cancer}/refseqs`.
    2. Transfers sequences
-   ```bash
+```bash
 sbatch ex_seqs_to_txt.sh
 ```
    3. Put all names of TXT files containing sequences into a new TXT file.
