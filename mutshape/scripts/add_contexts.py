@@ -1,4 +1,5 @@
 import os
+import sys
 import pandas as pd
 from pyfaidx import Fasta
 from sys import argv

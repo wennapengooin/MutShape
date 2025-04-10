@@ -15,6 +15,7 @@ This README outlines the complete pipeline for analyzing mutational signatures a
   - [Environment Setup](#environment-setup)
     - [For SigProfilerAssignment:](#for-sigprofilerassignment)
     - [For deepDNAshape:](#for-deepdnashape)
+    - [General Instructions for SLURM Scripts](#general-instructions-for-slurm-scripts)
   - [Data Acquisition](#data-acquisition)
     - [Download MAF and CSV files locally:](#download-maf-and-csv-files-locally)
     - [Download reference FASTA](#download-reference-fasta)
@@ -94,6 +95,26 @@ cd deepDNAshape                                      # enter deepDNAshape reposi
 pip install .                                        # install deepDNAshape
 ```
 
+### General Instructions for SLURM Scripts
+
+Before running any SLURM script (`sbatch`), ensure the following:
+
+1. **Input Filenames**:
+   - Update the variables in the script (e.g., `csvnames`, `mutnames`, `refnames`, `seqnames`) to point to the correct text files containing the list of input files.
+
+2. **Array Size**:
+   - Adjust the `--array` parameter in the SLURM script to match the number of input files listed in the corresponding text file.
+
+3. **Email Notifications**:
+   - Replace `YOUR_EMAIL_ADDRESS` in the `--mail-user` parameter with your email address to receive job notifications.
+
+4. **File Paths**:
+   - Verify and update all file paths in the script to match your directory structure.
+
+5. **Reference Files**:
+   - Ensure the reference FASTA file and other required files are correctly specified in the script.
+
+
 ## Data Acquisition
 ------------------
 
@@ -169,7 +190,7 @@ If you used `scp -r` to copy the MAF files from local to virtual, they will be c
    *Note: ensure you have permissions to uncompress*
 
    ```bash
-   gzip -dr /home/wendyy/scratch/maf/{cancer}  # Uncompress directory containing maf.gz files
+   gzip -dr /home/wendyy/scratch/maf/{cancer}/  # Uncompress directory containing maf.gz files
    ```
 
 3. **Run SigProfilerAssignment**:
@@ -201,26 +222,31 @@ If you used `scp -r` to copy the MAF files from local to virtual, they will be c
    sbatch master_add_contexts.sh
    ```
 3. **Transfer reference and mutant sequences to TXT files**
-   1. Create folders in `scratch` to store TXTs containing mutant and reference sequences: ``mkdir {cancer}/mutseqs` and `mkdir {cancer}/refseqs`.
-   2. Transfers sequences
-```bash
-sbatch ex_seqs_to_txt.sh
-```
+   1. Create folders in `scratch` to store TXTs containing mutant and reference. sequences: `mkdir ./{cancer}/mutseqs/` and `mkdir ./{cancer}/refseqs/`.
+   2. Transfers sequences.
+  ```bash
+  sbatch ex_seqs_to_txt.sh
+  ```
    3. Put all names of TXT files containing sequences into a new TXT file.
+   eg. `ls /home/wendyy/scratch/coad/refseqs/* > /home/wendyy/scratch/coad/refseqs.txt` and `ls /home/wendyy/scratch/coad/mutseqs/* > /home/wendyy/scratch/coad/mutseqs.txt`
    
-2. **Predict DNA shape**:
-   1. Run deepDNAshape.
+1. **Predict DNA shape**:
+   1. Create folders to hold the DNA shape values of mutant and wildtype DNA shape features.
+   eg. `mkdir ./{cancer}/{feature}/mutshape/` and `mkdir ./{cancer}/{feature}/refshape/`
+   2. Run deepDNAshape. 
+   
    ```bash
    sbatch master_get_dna_shape
    ```
-   2.  Put all names of TXT files containing DNA shape values into a new TXT file
+   3.  Put all names of TXT files containing DNA shape values into a new TXT file.
+   eg. `ls /home/wendyy/scratch/{cancer}/{feature}/mutshape/*.txt > /home/wendyy/scratch/{cancer}/{feature}/mutshape.txt` and `ls /home/wendyy/scratch/{cancer}/{feature}/refshape/*.txt > /home/wendyy/scratch/{cancer}/{feature}/refshape.txt`
 
 ## Data Processing and Visualization
 -----------------------------------
 
 **Calculate Euclideans, removing duplicates, adding mutation type**:
 ```bash
-sbatch master_calcadd.sh # Calculate and add Euclidean distance, sign, and Euclidean distance
+sbatch master_process_all_features.sh # Calculate and add Euclidean distance, sign, signed Euclidean distance, and sequence values
 python no_dup.py <csv_file> # Remove duplicate mutations
 ```
 
@@ -235,6 +261,7 @@ For more detailed instructions on specific parts of the pipeline, please refer t
   - [Environment Setup](#environment-setup)
     - [For SigProfilerAssignment:](#for-sigprofilerassignment)
     - [For deepDNAshape:](#for-deepdnashape)
+    - [General Instructions for SLURM Scripts](#general-instructions-for-slurm-scripts)
   - [Data Acquisition](#data-acquisition)
     - [Download MAF and CSV files locally:](#download-maf-and-csv-files-locally)
     - [Download reference FASTA](#download-reference-fasta)
