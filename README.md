@@ -246,6 +246,8 @@ If you used `scp -r` to copy the MAF files from local to virtual, they will be c
 
 **Calculate Euclideans, removing duplicates, adding mutation type**:
 ```bash
+sbatch ex_merge_csvs.sh # Merge all the csvs of a cancerproject into one large csv
+sbatch ex_add_sig_group_and_shannons.sh # Add signature group and Shannon index to mutation
 sbatch master_process_all_features.sh # Calculate and add Euclidean distance, sign, signed Euclidean distance, and sequence values
 python no_dup.py <csv_file> # Remove duplicate mutations
 ```
